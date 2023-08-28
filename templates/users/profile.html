@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+
+    <section class="update">
+        <div class="container-fluid py-5">
+            <div class="row my-5 py-5">
+                <div class="col-11 col-lg-4 form">
+                    <h1 class="my-5">
+                        My Profile
+                    </h1>
+                    <div class="image">
+                        <img src="{{ user.profile_picture }}" id="photo" >
+                        <br>
+                    </div>
+                    <br>
+                    <form style="margin-left: 10%" class="py-5">
+                        <label for="username">Username</label>
+                        <br>
+                        <input type="text" style="border: none;" class="inputs" name="name" id="name" readonly {% if user.username %}value="{{user.username}}"{% endif %}>
+                        <br>
+                        <label for="email">Email</label>
+                        <br>
+                        <input type="email" style="border: none;" class="inputs" name="email" id="email" readonly {% if user.email %}value="{{user.email}}"{% endif %}>
+                        <br>
+                        <label for="date">Birth Date</label>
+                        <br>
+                        <input type="text" style="border: none;" class="inputs" name="date" id="date" readonly {% if user.birth_date %}value="{{user.birth_date}}"{% endif %}>
+                        <br>
+                        <label for="gender">Civility</label>
+                        <br>
+                        <input type="text" style="border: none;" class="inputs" name="date" id="date" readonly {% if user.gender %}value="{{user.gender}}"{% endif %}>
+                        <br>
+                        <label for="address">Address</label>
+                        <br>
+                        <input type="text" style="border: none;" class="inputs" name="address" id="address" readonly {% if user.address %}value="{{user.address}}"{% endif %}>
+                        <br>
+                        <label for="postal_code">Postal Code</label>
+                        <br>
+                        <input type="text" style="border: none;" class="inputs" name="postal_code" id="postal_code" readonly {% if user.postal_code %}value="{{user.postal_code}}"{% endif %}>
+                        <br>
+                        <label for="city">City</label>
+                        <br>
+                        <input type="text" style="border: none;" class="inputs" name="city" id="city" readonly {% if user.city %}value="{{user.city}}"{% endif %}>
+                        <br>
+                        <label for="country">Country</label>
+                        <br>
+                        <input type="text" style="border: none;" class="inputs" name="country" id="Country" readonly {% if user.country %}value="{{user.country}}"{% endif %}>
+                        <br>
+                        <a href="{% url 'profile-update' %}" style="justify-content: center; margin-left: 35%" class="btn account-btn mt-5">Update</a>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% include '../codeSnippets/footer.html' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+{% endblock content %}
+

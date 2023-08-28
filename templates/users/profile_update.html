@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+
+<script>
+function changeImage() {
+    document.getElementById("photo").src = document.getElementById("file").value;
+}
+</script>
+
+    <section class="update">
+        <div class="container-fluid py-5">
+            <div class="row my-5 py-5">
+                <div class="col-11 col-lg-4 form">
+                    <form method="POST" class="p-5" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h1 class="my-5">
+                            My Profile
+                        </h1>
+                        <div class="image">
+                            <img src="{{ user.profile_picture }}" id="photo" >
+                            <input name="profile_picture" type="file" id="file" accept="image/*">
+                            <br>
+                            <label for="file" onchange="changeImage()" class="btn uploadBtn">Choose Photo</label>
+                        </div>
+                        <br>
+                        <label for="username">Username</label>
+                        <br>
+                        <input type="text" class="inputs" name="username" id="username" {% if user.username %}value="{{user.username}}"{% endif %}>
+                        <br>
+                        <label for="email">E-mail</label>
+                        <br>
+                        <input type="email" class="inputs" name="email" id="email" {% if user.email %}value="{{user.email}}"{% endif %}>
+                        <br>
+                        <label for="email">Date of Birth</label>
+                        <br>
+                        <input type="text" class="inputs" name="birth_date" id="date" {% if user.birth_date %}value="{{user.birth_date.year}}-{{user.birth_date.month}}-{{user.birth_date.day}}"{% endif %} >
+                        <br>
+                        <label for="radio">Civility</label>
+                        <br>
+                        <select name="gender" class="inputs">
+                            {% if not user.gender %}
+                            <option></option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            {% else %}
+                                {% if user.gender == 'Male' %}
+                                <option>Female</option>
+                                {% else %}
+                                <option>Male</option>
+                                {% endif %}
+                            {% endif %}
+                        </select>
+                        <br>
+                        <label for="address">Address</label>
+                        <br>
+                        <input type="text" class="inputs" name="address" id="address" {% if user.address %}value="{{user.address}}"{% endif %}>
+                        <br>
+                        <label for="postal_code">Postal Code</label>
+                        <br>
+                        <input type="text" class="inputs" name="postal_code" id="postal_code" {% if user.postal_code %}value="{{user.postal_code}}"{% endif %}>
+                        <br>
+                        <label for="city">City</label>
+                        <br>
+                        <input type="text" class="inputs" name="city" id="city" {% if user.city %}value="{{user.city}}"{% endif %}>
+                        <br>
+                        <label for="Country">Country</label>
+                        <br>
+                        <input type="Text" class="inputs" name="country" id="country" {% if user.country %}value="{{user.country}}"{% endif %}>
+                        <br>
+                        <input type="submit" value="Update" class="btn btn-success mt-3 w-100">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include '../codeSnippets/footer.html' %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    {% endblock content %}
+

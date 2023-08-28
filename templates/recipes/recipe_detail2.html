@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+</head>
+<body>
+    <h1>{{recipe}}</h1>
+
+    {{recipe.title}}
+    
+    
+    <h1>Num of dishes</h1>
+
+    <button id="add" value=1 ><strong>+</strong></button>
+    <button id="subtract" value=1 ><strong>-</strong></button>
+
+    {% for ingItem in ingredientItems %}
+    <div id='ingredient-{{forloop.counter0}}'> 
+            <span class='ing-name'>
+                {{ingItem.ingredient.name}}
+            </span>
+            <span class='ing-quantity'>
+                {{ingItem.quantity}}
+            </span>
+    </div> 
+    
+    {% endfor %}
+
+    <h1>Utensils</h1>
+
+    {% for utensItem in utensilItems %}
+    <div>
+    <span>
+        {{utensItem.utensil.name}}
+    </span>
+    <span>
+        {{utensItem.utensil.quantity}}
+    </span>
+    
+</div>
+
+    {% endfor %}
+    
+    <script>
+document.getElementById('add').addEventListener('click', () => {
+    change_ingredients_quantity('u')
+})
+document.getElementById('subtract').addEventListener('click', () => {
+    change_ingredients_quantity('d')
+})
+function change_ingredients_quantity(up_or_down) {
+    let slug = '{{recipe.slug}}';
+    let add_button = document.getElementById('add');
+    let subtract_button = document.getElementById('subtract');
+    let num_of_dishes; 
+    let ingredientTag;
+    if (up_or_down == 'u') {
+        num_of_dishes = parseInt(add_button.getAttribute('value')) + 1;
+    } else {
+        num_of_dishes = parseInt(add_button.getAttribute('value')) - 1;
+    }
+    if (num_of_dishes <= 0) {
+        return
+    }
+    add_button.setAttribute('value', num_of_dishes);
+    subtract_button.setAttribute('value', num_of_dishes);
+    fetch(`/api/get_num_of_dishes/${slug}/${num_of_dishes}/`)
+        .then(response => response.json())
+        .then(function(data) {
+            for (let i=0; i < data.length; i++) {
+                ingredientTag = document.getElementById(`ingredient-${i}`);
+                qty = ingredientTag.getElementsByClassName('ing-quantity')[0];
+                qty.innerHTML = data[i];
+                console.log(data[i]);
+            }
+        })
+        .catch(error => console.log(error))
+}
+
+    </script>
+
+</body>
+</html>

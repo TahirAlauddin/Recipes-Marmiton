@@ -1,0 +1,373 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    .mySlides {display:none}
+    .w3-left, .w3-right, .w3-badge {cursor:pointer}
+    .w3-badge {height:13px;width:13px;padding:0}
+</style>
+
+<section class="view-recipe">
+    <div class="container-fluid">
+        <div class="row py-5">
+            <div class="col-12 col-lg-6 show px-5">
+                <h1 class="heading mt-5 mb-3">
+                    {{recipe.title}}
+                </h1>
+                <div class="review">
+                    <div class="rate">
+                        {% for count in rating_count %}
+                        <i class="fa fa-star"></i>
+                        {% endfor %}
+                        {% if rating_count %}
+                        <span>{{recipe.average_rating}}</span>
+                        {% endif %}
+                        
+                        <a href="#comments">{{comments|length}} Comments</a>
+                    </div>
+                </div>
+                <br>
+
+                <div class="w3-content w3-display-container" style="max-width:800px">
+                    
+   
+                    <div class="owl-carousel owl-theme">
+                        {% comment %} {% if recipe.video_url %}
+                        <div class="item">
+                            <iframe src="{{recipe.video_url}}" width="600" height="350">
+                            </iframe>
+                        </div>
+                        {% endif %} {% endcomment %}
+
+                        <div class="item">
+                            <img src="{{ recipe.thumbnail_image }}">
+                        </div>
+                        {% for image in images %}
+                            <div class="item"><img src="{{ image.image.url }}" alt=""></div>
+                        {% endfor %}
+                    </div>
+
+
+                <div class="row text-center my-4 sec">
+                    <div class="col-4">
+                        <p>{{recipe.get_difficulty}}</p>
+                    </div>
+                    <div class="col-4">
+                        <p>{{recipe.get_cost}}</p>
+                    </div>
+                    <div class="col-4">
+                        {% with recipe.total_preparation_time as total_time %}
+                            {% if total_time %}
+                                {% if total_time.hour %}
+                                <p>{{total_time.hour}} hour{% if total_time.hour > 1 %}s{% endif %}</p>
+                                {% endif %}
+                                {% if total_time.minute %}
+                                <p>{{total_time.minute}} minute{% if total_time.minute > 1 %}s{% endif %}</p>
+                                {% endif %}
+                            {% else %}
+                                <p>-</p>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                </div>
+                
+                {% if recipe.video_url %}
+                <div class="">
+                    <h1><a style="text-decoration: none;" href="{{recipe.video_url}}">Watch Recipe Video</a></h1>
+                </div>
+                {% endif %}
+
+                <div class="col-12 col-lg-4">
+                    <p class="heading">Number of Dishes</p>
+                    <input type="number" id="addmem" value="{{recipe.num_of_dishes}}" min="1" max="100" />
+                </div>
+                <div class="products mb-5 text-center">
+                    <h1 class="mb-5">
+                        <span>
+                            Ingredient
+                        </span>
+                    </h1>
+                    <div class="row">
+                        {% for ingredientItem in ingredientItems %}
+                        <div class="col-12 col-lg-3">
+                            <img src="{{ingredientItem.ingredient.image.url}}" class="img">
+                            <br>
+                            <span id="ingredient-{{forloop.counter0}}" name="ingredientItem-quantity">{{ingredientItem.quantity}}</span>
+                            
+                            <span name="ingredientItem-unit">{{ingredientItem.unit}}</span>
+                            <span name="ingredientItem-name">{{ingredientItem.ingredient.name}}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="products mb-5 text-center">
+                    <h1 class="mb-5">
+                        <span>
+                            Utensils
+                        </span>
+                    </h1>
+                    <div class="row">
+                        {% for utensilItem in utensilItems %}
+                        <div class="col-12 col-lg-3">
+                            <img src="{{utensilItem.utensil.image.url}}" class="img">
+                            <br>
+                            <span name="utensilItem-quantity">{{utensilItem.quantity}}</span>
+                            <span name="utensilItem-name">{{utensilItem.utensil.name}}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="products mb-5">
+                    <h1 class="mb-5 text-center">
+                        <span>
+                            Steps/Description
+                        </span>
+                    </h1>
+                    <div class="row">
+                        <p>
+                            {{recipe.description}}
+                        </p>
+                    </div>
+                    <h1 class="mb-5 text-center">
+                        <span>
+                            Preparation
+                        </span>
+                    </h1>
+                    <div class="row time text-center">
+                        <p class="head heading">
+                            Total Time: <span style="font-weight: 400;">
+                                {% with recipe.total_preparation_time as total_prep_time %}
+                                {% if total_prep_time %}
+                                    {% if total_prep_time.hour %}
+                                    {{total_prep_time.hour}} hour{% if total_prep_time.hour > 1 %}s{% endif %}
+                                    {% endif %}
+                                    {% if total_prep_time.minute %}
+                                    {{total_prep_time.minute}} minute{% if total_prep_time.minute > 1 %}s{% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            {% endwith %}
+                            </span>
+                        </p>
+                        <div class="col-12 col-lg-4">
+                            <p class="heading">
+                                Preparation:
+                            </p>
+                            <p id="preparation">
+                                {% with recipe.preparation_time as prep_time %}
+                                {% if prep_time %}
+                                    {% if prep_time.hour %}
+                                    {{prep_time.hour}} hour{% if prep_time.hour > 1 %}s{% endif %}
+                                    {% endif %}
+                                    {% if prep_time.minute %}
+                                    {{prep_time.minute}} minute{% if prep_time.minute > 1 %}s{% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            {% endwith %}
+                            </p>
+                        </div>
+
+                        <div class="col-12 col-lg-4">
+                            <p class="heading">
+                                Rest:
+                            </p>
+                            <p id="rest">
+                                {% with recipe.rest_time as rest_time %}
+                                {% if rest_time %}
+                                    {% if rest_time.hour %}
+                                    {{rest_time.hour}} hour{% if rest_time.hour > 1 %}s{% endif %}
+                                    {% endif %}
+                                    {% if rest_time.minute %}
+                                    {{rest_time.minute}} minute{% if rest_time.minute > 1 %}s{% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endwith %}                 
+                            </p>
+                        </div>
+
+                        <div class="col-12 col-lg-4">
+                            <p class="heading">
+                                Cooking:
+                            </p>
+                            <p id="cooking">
+                                {% with recipe.cooking_time as cooking_time %}
+                                {% if cooking_time %}
+                                    {% if cooking_time.hour %}
+                                    {{cooking_time.hour}} hour{% if cooking_time.hour > 1 %}s{% endif %}
+                                    {% endif %}
+                                    {% if cooking_time.minute %}
+                                    {{cooking_time.minute}} minute{% if cooking_time.minute > 1 %}s{% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            {% endwith %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="experience my-5" id="comments">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 sec p-5">
+                <p class="heading">
+                    <span>
+                        Tell us about your Experience
+                    </span>
+                </p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <textarea name="content" id="des" placeholder="Tell us about it" cols="30" rows="10" class="w-100 inputs" required></textarea>
+                    <br>
+                    <fieldset class="rating my-2"> 
+                        <input  type="radio" id="star5" name="rating" value="5" />
+                        <label class="full" for="star5" title="5 stars"></label> 
+                    
+                        <input  type="radio" id="star4" name="rating" value="4" />
+                        <label class="full" for="star4" title="4 stars"></label> 
+                    
+                        <input  type="radio" id="star3" name="rating" value="3" />
+                        <label class="full" for="star3" title="3 stars"></label> 
+                    
+                        <input  type="radio" id="star2" name="rating" value="2" />
+                        <label class="full" for="star2" title="2 stars"></label> 
+                    
+                        <input  type="radio" id="star1" name="rating" value="1" required />
+                        <label class="full" for="star1" title="1 star"></label> 
+                    </fieldset>
+                    <input type="submit" value="Done" class="btn">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="comments my-5" id="comments">
+    <div class="container">
+        <div class="row g-2">
+            {% for comment in comments %}
+            <div class="col-12 col-lg-4 sec p-5">
+                <img src="{{comment.owner.profile_picture}}">
+                <p class="name">
+                    <span>
+                        {{comment.owner.username}}
+                    </span>
+                </p>
+                <p class="des">
+                    {{comment.content}}
+                </p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% include '../codeSnippets/footer.html' %}
+
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-input-spinner.js' %}"></script>
+
+<script>
+    $(document).ready(function(){
+        $("input[type='radio']").click(function(){
+            var sim = $("input[type='radio']:checked").val();
+            //alert(sim);
+    if (sim<3) { $('.myratings').css('color','red'); $(".myratings").text(sim); }else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } }); });
+</script>
+
+<script>
+    $("#addmem").inputSpinner()
+</script>
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+    
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+    
+    function currentDiv(n) {
+      showDivs(slideIndex = n);
+    }
+    
+    function showDivs(n) {
+      let i;
+      let x = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("demo");
+      if (n > x.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = x.length}
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" w3-white", "");
+      }
+      x[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " w3-white";
+    }
+    </script>
+
+
+    <script>
+
+    let ingredientTag;
+    let slug = '{{recipe.slug}}';
+    let dishes_input = document.getElementById('addmem');
+    dishes_input.addEventListener('change', function() {
+
+        fetch(`/api/get_num_of_dishes/${slug}/${dishes_input.value}/`)
+            .then(response => response.json())
+            .then(function(data) {
+                for (let i=0; i < data.length; i++) {
+                    ingredientTag = document.getElementById(`ingredient-${i}`);
+                    if (data[i] != '') {
+                        ingredientTag.innerHTML = Math.round(data[i]);
+                    }
+                    else {
+                        ingredientTag.innerHTML = data[i];
+                    }
+                }
+            })
+            .catch(error => console.log(error))
+    })
+
+    </script>
+
+    
+
+    <script>
+        $('.owl-carousel').owlCarousel({
+            dots:false, 
+            responsive:{
+                0:{
+                    items:1
+                },
+                480:{
+                    items:1
+                },
+                768:{
+                    items:1
+                }
+            }
+        })
+    </script>
+    <script src="{% static 'js/bootstrap-input-spinner.js' %}"></script>
+    
+    {% endblock content %}
+

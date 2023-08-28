@@ -1,0 +1,640 @@
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none; }
+
+.nav-top {
+  background-color: #FF9F95; }
+  .nav-top .navbar-brand .fa-cutlery {
+    color: #3B3331; }
+  .nav-top form input {
+    border: 1px solid #FF9F95;
+    border-radius: 5px;
+    width: 500px;
+    padding: 0 10px;
+    outline: none; }
+  .nav-top form .btn {
+    box-shadow: none;
+    border: 1px solid #FF9F95; }
+    .nav-top form .btn .fa-search {
+      box-shadow: none;
+      color: #FF6F61; }
+
+.nav-bottom {
+  box-shadow: 0 4px 10px -3px #FFCFCA; }
+  .nav-bottom .navbar-toggler {
+    box-shadow: none; }
+    .nav-bottom .navbar-toggler .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 111, 97, 1)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); }
+  .nav-bottom .navbar-nav .nav-link {
+    text-decoration: none;
+    color: #FF9F95; }
+  .nav-bottom .navbar-nav .active {
+    color: #3B3331; }
+  .nav-bottom .accounts .signup-btn {
+    border-radius: 20px;
+    border: 1px solid #3B3331;
+    box-shadow: none; }
+    .nav-bottom .accounts .signup-btn:hover {
+      background-color: #3B3331;
+      color: #FF9F95; }
+  .nav-bottom .accounts .login-btn {
+    outline: none;
+    box-shadow: none; }
+  .nav-bottom .accounts img {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 2px solid #FF6F61; }
+
+.main .owl-carousel .item {
+  text-align: center; }
+  .main .owl-carousel .item img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover; }
+  .main .owl-carousel .item .detail {
+    padding: 0 20px; }
+    .main .owl-carousel .item .detail p {
+      padding: 5px 15px;
+      margin: 5px;
+      color: #3B3331;
+      font-weight: 600; }
+    .main .owl-carousel .item .detail .profile {
+      display: flex;
+      float: left;
+      align-items: center; }
+      .main .owl-carousel .item .detail .profile .pro-img {
+        border-radius: 25px;
+        margin-left: 10%;
+        height: 30px;
+        width: 30px;
+        object-fit: cover; }
+      .main .owl-carousel .item .detail .profile .pro-id {
+        padding: 0;
+        margin: 0;
+        margin-left: 10px;
+        font-weight: 300;
+        font-size: 14px; }
+    .main .owl-carousel .item .detail .like {
+      display: flex;
+      float: right;
+      align-items: center; }
+      .main .owl-carousel .item .detail .like i {
+        color: #FF6F61;
+        font-size: 20px; }
+      .main .owl-carousel .item .detail .like .like-id {
+        padding: 0;
+        margin: 0;
+        margin-left: 10px;
+        font-weight: 300;
+        font-size: 14px; }
+
+.category .over {
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../img/img3.jpg); }
+  .category .over .part {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: #00000099;
+    height: 100%;
+    color: #ffffff; }
+    .category .over .part h1 {
+      font-size: 70px; }
+      .category .over .part h1 span {
+        color: #FF6F61; }
+
+.category-module .recipe-stack {
+  text-align: center;
+  background-color: #f8f8f8; }
+  .category-module .recipe-stack .mod .item {
+    text-align: center; }
+    .category-module .recipe-stack .mod .item img {
+      height: 300px;
+      width: 300px;
+      border-radius: 2500px;
+      object-fit: cover; }
+    .category-module .recipe-stack .mod .item .detail {
+      padding: 0 60px;
+      align-items: center;
+      height: 100px; }
+      .category-module .recipe-stack .mod .item .detail p {
+        margin: -10px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 20px; }
+        .category-module .recipe-stack .mod .item .detail p span {
+          background-color: #FF6F61;
+          padding: 2px 10px;
+          border-radius: 5px;
+          color: #ffffff; }
+
+.module {
+  background-color: #ffefee; }
+  .module .module-title {
+    font-size: 30px; }
+    .module .module-title .module-subtitle {
+      color: #FF6F61; }
+  .module .row {
+    text-align: center; }
+    .module .row .module-article {
+      text-align: center; }
+      .module .row .module-article .module-article-img {
+        box-shadow: 0px 0px 5px 1px #a0a0a0;
+        border-radius: 5px;
+        height: 225px;
+        width: 225px;
+        object-fit: cover; }
+    .module .row .module-article-title {
+      margin: -95px auto 0 auto;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      width: 50%; }
+      .module .row .module-article-title a {
+        text-decoration: none;
+        color: #3B3331; }
+        .module .row .module-article-title a i {
+          color: #ffffff;
+          background-color: #FF6F61;
+          padding: 6px;
+          margin-bottom: -10px; }
+        .module .row .module-article-title a h3 {
+          background-color: #ffffff;
+          padding: 10px 20px;
+          border-radius: 5px;
+          font-size: 15px; }
+
+.sec-module .recipe-stack {
+  text-align: center;
+  background-color: #f8f8f8; }
+  .sec-module .recipe-stack .btn {
+    background-color: #FF6F61;
+    color: #ffffff;
+    border-radius: 25px; }
+  .sec-module .recipe-stack .mod-first .item {
+    text-align: center; }
+    .sec-module .recipe-stack .mod-first .item img {
+      height: 220px;
+      width: 220px;
+      object-fit: cover; }
+    .sec-module .recipe-stack .mod-first .item .detail {
+      padding: 0 60px;
+      align-items: center; }
+      .sec-module .recipe-stack .mod-first .item .detail p {
+        padding: 5px 15px;
+        margin: 5px;
+        color: #3B3331;
+        font-weight: 600; }
+      .sec-module .recipe-stack .mod-first .item .detail .profile {
+        display: flex;
+        float: left;
+        align-items: center; }
+        .sec-module .recipe-stack .mod-first .item .detail .profile .pro-img {
+          border-radius: 25px;
+          margin-left: 10%;
+          height: 30px;
+          width: 30px;
+          object-fit: cover; }
+        .sec-module .recipe-stack .mod-first .item .detail .profile .pro-id {
+          padding: 0;
+          margin: 0;
+          margin-left: 10px;
+          font-weight: 300;
+          font-size: 14px; }
+      .sec-module .recipe-stack .mod-first .item .detail .like {
+        margin-top: 4px;
+        display: flex;
+        float: right;
+        align-items: center; }
+        .sec-module .recipe-stack .mod-first .item .detail .like i {
+          color: #FF6F61;
+          font-size: 20px; }
+        .sec-module .recipe-stack .mod-first .item .detail .like .like-id {
+          padding: 0;
+          margin: 0;
+          margin-left: 10px;
+          font-weight: 300;
+          font-size: 14px; }
+
+.sec-module .mod-sec {
+  background-color: #f8f8f8;
+  padding: 10px; }
+  .sec-module .mod-sec h1 {
+    font-size: 18px; }
+    .sec-module .mod-sec h1 span {
+      border-bottom: 2px solid #FF6F61; }
+  .sec-module .mod-sec .cen {
+    text-align: center; }
+    .sec-module .mod-sec .cen p {
+      font-weight: 500;
+      font-size: 14px; }
+    .sec-module .mod-sec .cen input {
+      width: 100%;
+      border: none; }
+    .sec-module .mod-sec .cen .subscribe {
+      padding: 0 10px;
+      border: 1px solid #dbdbdb; }
+    .sec-module .mod-sec .cen .btn {
+      background-color: #FF6F61;
+      padding: 0;
+      border-radius: 0;
+      color: #ffffff; }
+
+.sec-module .mod-tri {
+  background-image: url(../img/img1.jpg);
+  box-shadow: inset 0 0 99999px rgba(0, 0, 0, 0.7);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+  .sec-module .mod-tri h1 {
+    color: #ffffff;
+    font-size: 30px; }
+  .sec-module .mod-tri .but {
+    text-align: center; }
+    .sec-module .mod-tri .but .btn {
+      background-color: transparent;
+      border: 3px solid #ffffff;
+      color: #ffffff;
+      padding: 10px 20px; }
+
+.sec-module .mod-for {
+  background-color: #f8f8f8; }
+  .sec-module .mod-for h1 {
+    font-size: 18px; }
+    .sec-module .mod-for h1 span {
+      border-bottom: 2px solid #FF6F61; }
+  .sec-module .mod-for .for-item {
+    padding: 0;
+    list-style: none; }
+    .sec-module .mod-for .for-item .content .content-data {
+      display: flex;
+      align-items: center; }
+      .sec-module .mod-for .for-item .content .content-data .content-img {
+        height: 100px;
+        width: 100px;
+        object-fit: cover;
+        border-radius: 50px; }
+      .sec-module .mod-for .for-item .content .content-data .content-txt-data .content-txt {
+        margin-left: 10px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        color: #3B3331; }
+      .sec-module .mod-for .for-item .content .content-data .content-txt-data .like {
+        display: flex;
+        align-items: center; }
+        .sec-module .mod-for .for-item .content .content-data .content-txt-data .like i {
+          color: #FF6F61;
+          font-size: 20px;
+          padding-right: 10px; }
+        .sec-module .mod-for .for-item .content .content-data .content-txt-data .like .like-id {
+          padding: 0;
+          margin: 0;
+          font-weight: 300;
+          font-size: 14px;
+          color: #3B3331; }
+
+.last-module {
+  background-color: #ffefee; }
+  .last-module .module-title {
+    font-size: 30px; }
+    .last-module .module-title .module-subtitle {
+      color: #FF6F61; }
+  .last-module .item {
+    padding: 0;
+    text-align: center; }
+    .last-module .item img {
+      height: 400px;
+      width: 100%;
+      object-fit: cover; }
+    .last-module .item .detail {
+      padding: 0 20px; }
+      .last-module .item .detail p {
+        padding: 5px 15px;
+        margin: 5px;
+        color: #3B3331;
+        font-weight: 600; }
+      .last-module .item .detail .profile {
+        display: flex;
+        float: left;
+        align-items: center; }
+        .last-module .item .detail .profile .pro-img {
+          border-radius: 25px;
+          margin-left: 10%;
+          height: 30px;
+          width: 30px;
+          object-fit: cover; }
+        .last-module .item .detail .profile .pro-id {
+          padding: 0;
+          margin: 0;
+          margin-left: 10px;
+          font-weight: 300;
+          font-size: 14px; }
+      .last-module .item .detail .like {
+        display: flex;
+        float: right;
+        align-items: center; }
+        .last-module .item .detail .like i {
+          color: #FF6F61;
+          font-size: 20px; }
+        .last-module .item .detail .like .like-id {
+          padding: 0;
+          margin: 0;
+          margin-left: 10px;
+          font-weight: 300;
+          font-size: 14px; }
+
+.recipe .row {
+  justify-content: center; }
+  .recipe .row .form {
+    background-color: #ffefee;
+    border-radius: 25px; }
+    .recipe .row .form .head {
+      font-size: 30px;
+      font-weight: 600; }
+    .recipe .row .form .heading {
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: 600; }
+    .recipe .row .form .addmem {
+      float: right;
+      border-radius: 45px; }
+      .recipe .row .form .addmem input[type="number"] {
+        -moz-appearance: textfield;
+        text-align: center;
+        font-size: 20px;
+        border: none;
+        color: #202030; }
+      .recipe .row .form .addmem input::-webkit-outer-spin-button,
+      .recipe .row .form .addmem input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0; }
+      .recipe .row .form .addmem button {
+        color: #3264fe;
+        background-color: #ffffff;
+        border: none;
+        font-size: 20px;
+        cursor: pointer; }
+      .recipe .row .form .addmem #decrement {
+        border-radius: 25px;
+        background-color: #000000;
+        padding: 0 10px; }
+      .recipe .row .form .addmem #increment {
+        border-radius: 25px;
+        background-color: #000000;
+        padding: 0 8px; }
+    .recipe .row .form .inputs {
+      padding: 2px 10px;
+      border-radius: 5px;
+      border: 1px solid #a0a0a0;
+      outline: none; }
+    .recipe .row .form .readonly {
+      padding: 2px 10px;
+      border: none;
+      outline: none;
+      cursor: context-menu;
+      margin: 5px 0;
+      background-color: #ffefee; }
+    .recipe .row .form .add {
+      border-radius: 25px;
+      padding: 2px 20px;
+      float: right; }
+    .recipe .row .form .content .txt {
+      font-size: 30px; }
+    .recipe .row .form input[type="file"] {
+      display: none; }
+    .recipe .row .form .custom-file-upload {
+      border: 1px solid #ccc;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 14px; }
+    .recipe .row .form .data .element {
+      margin: 5px 0;
+      padding: 2px 10px;
+      border-radius: 5px;
+      border: 1px solid #a0a0a0;
+      outline: none; }
+    .recipe .row .form .adddata {
+      background-color: #FF6F61;
+      border-radius: 25px;
+      color: #ffffff; }
+
+.view-recipe .row {
+  justify-content: center; }
+  .view-recipe .row .show {
+    background-color: #ffefee;
+    border-radius: 25px; }
+    .view-recipe .row .show .heading {
+      font-size: 24px;
+      font-weight: 700;
+      margin-top: 20px; }
+    .view-recipe .row .show .review {
+      margin: 10px;
+      color: #FF6F61; }
+      .view-recipe .row .show .review a {
+        text-decoration: none;
+        float: right;
+        color: #FF6F61; }
+    .view-recipe .row .show .owl-carousel .item img {
+      width: 100%;
+      border-radius: 10px;
+      height: 400px;
+      object-fit: cover; }
+    .view-recipe .row .show .sec {
+      color: #FF6F61; }
+      .view-recipe .row .show .sec p {
+        font-size: 20px;
+        font-weight: 500; }
+    .view-recipe .row .show .products h1 {
+      padding-bottom: 10px; }
+      .view-recipe .row .show .products h1 span {
+        border-bottom: 2px solid #FF6F61;
+        font-size: 30px;
+        font-weight: 600; }
+    .view-recipe .row .show .products .row .img {
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
+      border-radius: 200px;
+      border: 3px solid #FF6F61; }
+    .view-recipe .row .show .products .row p {
+      font-size: 18px;
+      padding: 10px 0; }
+    .view-recipe .row .show .products .time {
+      background-color: #fddedb;
+      border-radius: 10px; }
+      .view-recipe .row .show .products .time .head {
+        border-bottom: 1px solid #a0a0a0; }
+      .view-recipe .row .show .products .time .heading {
+        font-weight: 600; }
+
+.experience .row {
+  justify-content: center; }
+  .experience .row .sec { }
+    .experience .row .sec .heading {
+      margin-top: 10px; }
+      .experience .row .sec .heading span {
+        font-size: 20px;
+        font-weight: 600;
+        border-bottom: 2px solid #FF6F61; }
+    .experience .row .sec .inputs {
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+      border: 1px solid #FF6F61;
+      outline: none; }
+    .experience .row .sec .rating {
+      border: none; }
+    .experience .row .sec .rating > [id^="star"] {
+      display: none; }
+    .experience .row .sec .rating > label:before {
+      margin: 2px;
+      font-size: 18px;
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f005"; }
+    .experience .row .sec .rating > .half:before {
+      content: "\f089"; }
+    .experience .row .sec .rating > label {
+      color: #ddd;
+      float: right; }
+    .experience .row .sec .rating > [id^="star"]:checked ~ label,
+    .experience .row .sec .rating:not(:checked) > label:hover,
+    .experience .row .sec .rating:not(:checked) > label:hover ~ label {
+      color: #FF9F95; }
+    .experience .row .sec .rating > [id^="star"]:checked + label:hover,
+    .experience .row .sec .rating > [id^="star"]:checked ~ label:hover,
+    .experience .row .sec .rating > label:hover ~ [id^="star"]:checked ~ label,
+    .experience .row .sec .rating > [id^="star"]:checked ~ label:hover ~ label {
+      color: #FF6F61; }
+    .experience .row .sec .btn {
+      float: right;
+      padding: 5px 20px;
+      border-radius: 25px;
+      border: 2px solid #FF6F61; }
+
+.comments .sec {
+  box-shadow: 0px 0px 10px 1px #ffe8e6;
+  border-radius: 10px; }
+  .comments .sec img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100px;
+    border: 2px solid #FF6F61; }
+  .comments .sec .name {
+    margin-top: 10px; }
+    .comments .sec .name span {
+      font-size: 20px;
+      font-weight: 600;
+      border-bottom: 2px solid #FF6F61; }
+
+.account {
+  background-image: url(../img/back.jpg);
+  background-position: center;
+  background-size: cover;
+  text-align: center; }
+  .account .row {
+    justify-content: center; }
+    .account .row .form {
+      background-color: #ffffff;
+      border-radius: 10px; }
+      .account .row .form h1 {
+        font-size: 30px;
+        font-weight: 600; }
+      .account .row .form input {
+        width: 75%;
+        padding: 5px 10px;
+        outline: none;
+        border: 1px solid #a0a0a0;
+        border-radius: 5px;
+        margin: 10px 0; }
+      .account .row .form .account-btn {
+        background-color: transparent;
+        border-radius: 20px;
+        font-weight: 600;
+        color: #FF6F61;
+        border: 2px solid #FF6F61;
+        width: 25%; }
+        .account .row .form .account-btn:hover {
+          background-color: #FF6F61;
+          color: #ffffff; }
+
+.update {
+  background-image: url(../img/back.jpg);
+  background-position: center;
+  background-size: cover; }
+  .update .row {
+    justify-content: center; }
+    .update .row .form {
+      background-color: #ffffff;
+      border-radius: 10px; }
+      .update .row .form h1 {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 600; }
+      .update .row .form .image {
+        text-align: center; }
+        .update .row .form .image #photo {
+          height: 150px;
+          width: 150px;
+          object-fit: cover;
+          border-radius: 250px;
+          border: 1px solid #FF6F61; }
+        .update .row .form .image #file {
+          display: none; }
+        .update .row .form .image .uploadBtn {
+          height: 40px;
+          font-size: 15px;
+          cursor: pointer; }
+      .update .row .form label {
+        font-size: 18px;
+        font-weight: 500; }
+      .update .row .form .inputs {
+        width: 100%;
+        padding: 5px 10px;
+        outline: none;
+        border: 1px solid #a0a0a0;
+        border-radius: 5px;
+        margin: 10px 0; }
+      .update .row .form .account-btn {
+        background-color: transparent;
+        border-radius: 20px;
+        font-weight: 600;
+        color: #FF6F61;
+        border: 2px solid #FF6F61;
+        width: 25%; }
+        .update .row .form .account-btn:hover {
+          background-color: #FF6F61;
+          color: #ffffff; }
+
+footer {
+  text-align: center;
+  background-color: #000000;
+  margin: 0; }
+  footer .social {
+    display: flex;
+    justify-content: center; }
+    footer .social .fa {
+      font-size: 24px;
+      padding: 0 20px;
+      color: #ffffff; }
+  footer .divider {
+    height: 3px;
+    width: 100%;
+    background-color: #a0a0a0;
+    opacity: 20%;
+    display: inline-block; }
+  footer .footer-main-text {
+    color: #ffffff; }

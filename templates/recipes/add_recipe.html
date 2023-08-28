@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="recipe">
+    <div class="container-fluid">
+        <div class="row py-5">
+            <div class="col-12 col-lg-6 form px-5">
+                <form method="POST" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <h1 class="my-5 head">
+                        Add Recipe
+                    </h1>
+                    <label class="heading" for="title">Title</label>
+                    <br>
+                    <input type="text" name="title" id="title" class="mb-3 inputs">
+                    <br>
+                    <label class="heading" for="description">Description</label>
+                    <br>
+                    <textarea name="description" id="description" cols="40" rows="5" class="inputs w-100 mb-3"></textarea>
+                    <br>
+                    <div class="row">
+                        <div class="col-12 col-lg-4">
+                            <p class="heading">Difficulty</p>
+                            <select name="difficulty" class="inputs w-100">
+                                <option>Very Easy</option>
+                                <option>Easy</option>
+                                <option>Medium</option>
+                                <option>Hard</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <p class="heading">Cost</p>
+                            <select name="cost" class="inputs w-100">
+                                <option>Cheap</option>
+                                <option>Medium</option>
+                                <option>Expensive</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <p class="heading">Category</p>
+                            <select name="category" class="inputs w-100">
+                                {% for category in categories %}
+                                <option>{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-12 col-lg-6 mb-5">
+                            <p class="heading">Number of Dishes</p>
+                            <input name="dishes" type="number" id="addmem" value="1" min="1" max="100" />
+                        </div> 
+                        <div class="col-12 times">
+                            <p class="heading">Preparation Time</p>
+                            <div class="row">
+                                <div class="ti col-6">
+                                    <p>Hours</p>
+                                    <input name="prep-hours" type="number" class="inputs w-75" value="0" min="0" max="60">
+                                </div>
+                                <div class="t col-6">
+                                    <p>Minutes</p>
+                                    <input name="prep-minutes" type="number" class="inputs w-75" value="30" step="5" min="0" max="60">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 times">
+                            <p class="heading">Cooking Time</p>
+                            <div class="row">
+                                <div class="ti col-6">
+                                    <p>Hours</p>
+                                    <input name="cooking-hours" type="number" class="inputs w-75" value="0" min="0" max="60">
+                                </div>
+                                <div class="t col-6">
+                                    <p>Minutes</p>
+                                    <input name="cooking-minutes" type="number" class="inputs w-75" value="30" step="5" min="0" max="60">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 times">
+                            <p class="heading">Rest Time</p>
+                            <div class="row">
+                                <div class="ti col-6">
+                                    <p>Hours</p>
+                                    <input name="rest-hours" type="number" class="inputs w-75" value="0" min="0" max="60">
+                                </div>
+                                <div class="t col-6">
+                                    <p>Minutes</p>
+                                    <input name="rest-minutes" type="number" class="inputs w-75" value="30" step="5" min="0" max="60">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <label class="custom-file-upload my-3">
+                    <input name="images" type="file" multiple required accept="image/*"/>
+                        Upload Pictures
+                    </label>
+                    <br>
+                    <label class="heading" for="youtube-url">Enter youtube link for the Video of the Recipe (Optional)</label>
+                    <br>
+                    <input class="element w-100" type="text" name="youtube-url" id="youtube-url" >
+                    <br>
+                    <div class="content my-5">  
+                        <h1 class="txt">
+                            Ingredients
+                        </h1>
+                        <div class="data" id="Ingredient">
+                            <span>
+                                Quantity:
+                            </span>
+                            <input name="ingredients-quantity" type="number" id="quantityIng" min="1" max="100" value="1" class="element w-25">
+                            <select name="ingredients-unit" type="text" id="unitIng" placeholder="unit" class="w-25 element">
+                                <option></option>
+                                {% for unit in units %}
+                                <option>{{unit}}</option>
+                                {% endfor %}
+                            </select>
+                            <select name="ingredients-name" class="element w-25">
+                                {% for ingredient in ingredients %}<option>{{ingredient.name}}</option>{% endfor %}
+                            </select>
+                            <br>
+                        </div>
+                        <div id="add-button">
+                            <input type="button" value="Add" onclick="addRowIng()" class="add btn btn-success">
+                            <br>
+                        </div>
+                        <p class="my-3">Can't find an Ingredient? <a href="{% url 'create-ingredient' %}" style="text-decoration: none; color: #FF6F61;">Add Ingredient</a></p>
+                    </div>
+                    <div class="content my-5">
+                        <h1 class="txt">
+                            Utensils
+                        </h1>
+                        <div class="data" id="Utensils">
+                            <span>
+                                Quantity
+                            </span>
+                            <input name="utensils-quantity" type="number" id="quantityUte" min="1" max="100" value="1" class="element w-25">
+                            <select name="utensils-name" class="element w-25">
+                                {% for utensil in utensils %}<option>{{utensil.name}}</option>{% endfor %}
+                            </select>
+                            <br>
+                        </div>
+                        <div>
+                            <input type="button" value="Add" onclick="addRowUte()" class="add btn btn-success">
+                            <br>
+                        </div>
+                        <p class="my-3">Can't find an Utensil? <a href="{% url 'create-utensil' %}" style="text-decoration: none; color: #FF6F61;">Add Utensil</a></p>
+                    </div>
+                    <input type="submit" value="Submit" class="btn adddata w-100 mb-5">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '../codeSnippets/footer.html' %}
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js\bootstrap-input-spinner.js' %}"></script>
+
+<script>
+    $("#addmem").inputSpinner()
+    $("#addtime").inputSpinner()
+</script>
+
+<script>
+    let ingredients = `{% for ingredient in ingredients %}<option>{{ingredient.name}}</option>{% endfor %}`;
+    let utensils = `{% for utensil in utensils %}<option>{{utensil.name}}</option>{% endfor %}`;
+    function addRowIng() {
+        const div = document.createElement('div');
+
+        div.className = 'form';
+
+        div.innerHTML = `
+        <span>
+            Quantity:
+        </span>
+        <input name="ingredients-quantity" type="number" id="quantityIng" min="1" max="100" value="1" class="element w-25">
+        <select name="ingredients-unit" type="text" id="unitIng" placeholder="unit" class="w-25 element">
+            <option></option>
+            {% for unit in units %}
+            <option>{{unit}}</option>
+            {% endfor %}
+        </select>        <select name="ingredients" class="element w-25">
+            ${ingredients}
+        </select>
+        <input type="button" value="-" onclick="removeRowIng(this)" class="element btn btn-danger">
+        <br>
+        `;
+
+        document.getElementById('Ingredient').appendChild(div);
+        }
+
+        function removeRowIng(input) {
+        document.getElementById('Ingredient').removeChild(input.parentNode);
+        }
+
+        function addRowUte() {
+        const div = document.createElement('div');
+
+        div.className = 'form';
+
+        div.innerHTML = `
+        <span>
+            Quantity
+        </span>
+        <input name="utensils-quantity" type="number" id="quantityUte" min="1" max="100" value="1" class="element w-25">
+        <select name="utensils" class="element w-25">
+            ${utensils}
+        </select>
+        <input type="button" value="-" onclick="removeRowUte(this)" class="element btn btn-danger">
+        <br>
+        `;
+
+        document.getElementById('Utensils').appendChild(div);
+        }
+
+        function removeRowUte(input) {
+        document.getElementById('Utensils').removeChild(input.parentNode);
+        }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+{% endblock content %}

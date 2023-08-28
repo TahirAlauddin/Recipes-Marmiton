@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% load i18n %}
+{% load account %}
+
+{% block title %}{% trans "Confirm E-mail Address" %}{% endblock %}
+
+
+{% block content %}
+
+
+
+
+<section class="account">
+    <div class="container-fluid py-5">
+        <div class="row my-5 py-5">
+            <div class="col-11 col-lg-4 form">
+                {% if confirmation %}
+                    {% user_display confirmation.email_address.user as user_display %}
+                    <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                        <h1 class="mt-5">Confirm E-mail Address</h1>
+                        <p>{% with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user <strong>{{ user_display }}</strong>.{% endwith %}</p>
+                        {% csrf_token %}
+                        <input style="width: 100%" type="submit" class="btn account-btn mt-5" value="Confirm">
+                    </form>
+                {% else %}
+                    {% url 'account_email' as email_url %}
+                    <p>This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request.</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+

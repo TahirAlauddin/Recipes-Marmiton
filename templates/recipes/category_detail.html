@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<section class="sec-module my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-9 recipe-stack">
+                <div class="row mod-first py-5">
+
+                    {% for recipe in category.recipes.all %}
+                        <div class="col-12 col-lg-4 my-3 my-lg-0 item">
+                            <a href="{% url 'recipe-detail' recipe.slug %}" style="text-decoration: none;">
+                                <img src="{{recipe.thumbnail_image}}">
+                                <div class="detail">
+                                    <p>{{recipe.title}}</p>
+                                    <span class="profile">
+                                        <img src="{% static 'img/profile.jpg' %}" class="pro-img">
+                                        <p class="pro-id">John</p>
+                                    </span>
+                                    <span class="like">
+                                        <i class="fa fa-star"></i>
+                                        <p class="like-id">{{recipe.average_rating}} stars!</p>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <a href="{% url 'create-recipe' %}" class="btn mb-5">
+                    Add Recipe
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+{% include '../codeSnippets/footer.html' %}
+
+{% endblock content %}
+

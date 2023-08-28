@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Verify Your E-mail Address{% endblock title %}
+
+{% block content %}
+
+
+
+<section class="account">
+    <div class="container-fluid py-5">
+        <div class="row my-5 py-5">
+            <div class="col-11 col-lg-4 form">
+                <h1 class="my-5">
+                    Verify Your E-mail Address
+                </h1>
+                <p style="margin: 0 15%; text-align: justify;"> 
+                    We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes. 
+                </p>
+                <p  style="margin: 0 15%; text-align: justify;">
+                    This part of the site requires us to verify that
+                    you are who you claim to be. For this purpose, we require that you
+                    verify ownership of your e-mail address. 
+                </p  style="margin: 0 15%; text-align: justify;">
+                <p> We have sent an e-mail to you for
+                    verification. Please click on the link inside that e-mail. If you do not see the verification e-mail in your main inbox, check your spam folder. Otherwise
+                    contact us if you do not receive it within a few minutes.
+                </p  style="margin: 0 15%; text-align: justify;">
+                <p  style="margin: 0 15%; text-align: justify;"><strong>Note:</strong> you can still <a href="{{ account_email }}">change your e-mail address</a></p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% include '../codeSnippets/footer.html' %}
+
+    
+{% endblock %}
+

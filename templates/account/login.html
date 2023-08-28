@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="account">
+    <div class="container-fluid py-5">
+        <div class="row my-5 py-5">
+            <div class="col-11 col-lg-4 form">
+                <form method="POST" class="py-5">
+                    {% csrf_token %}
+                    <h1 class="my-5">
+                        Login
+                    </h1>
+                    
+                    {{form.non_field_errors}}
+
+                    <input type="email" name="login" id="id_login" placeholder="E-mail" required>
+                    <br>
+                    <input type="password" name="password" id="id_password" placeholder="Password" required>
+                    <br>
+                    <label style="width: 30%" for="id_remember">Remember Me:</label> <input type="checkbox" name="remember" id="id_remember">
+                    <br>
+                    <a href="{% url 'account_reset_password' %}" style="text-decoration: none; color: #FF6F61;">Forgot password?</a>
+                    <br>
+                    <input type="submit" class="btn account-btn mt-5" value="Sign In">
+                </form>
+                <p>
+                    Don't have an Account?
+                    <a href="{% url 'account_signup' %}" style="text-decoration: none; color: #FF6F61;">
+                        Sign Up
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '../codeSnippets/footer.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+{% endblock content %}

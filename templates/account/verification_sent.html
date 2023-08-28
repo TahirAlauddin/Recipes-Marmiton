@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Email Verification{% endblock title %}
+
+{% block content %}
+
+
+
+<section class="account">
+    <div class="container-fluid py-5">
+        <div class="row my-5 py-5">
+            <div class="col-11 col-lg-4 form">
+                <h1 class="my-5">
+                    Verify Email
+                </h1>
+                <p style="margin: 0 15%; text-align: justify;"> 
+                    We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes. 
+                </p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% include '../codeSnippets/footer.html' %}
+
+    
+{% endblock %}

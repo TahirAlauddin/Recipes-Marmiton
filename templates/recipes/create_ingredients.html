@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="recipe">
+    <div class="container-fluid">
+        <div class="row py-5">
+            <div class="col-4 form px-5 text-center">
+                <form action="">
+                    <h1 class="mt-5 head">
+                        Add Ingredient
+                    </h1>
+                    <label class="heading" for="title">Title</label>
+                    <br>
+                    <input type="text" name="title" id="title" class="mb-3 inputs">
+                    <br>
+                    <label class="heading" for="unit">Unit</label>
+                    <br>
+                    <input type="text" name="unit" id="unit" class="mb-3 inputs">
+                    <br>
+                    <label class="custom-file-upload my-3">
+                    <input type="file" multiple accept="image/*"/>
+                        Upload Picture
+                    </label>
+                    <input type="submit" value="Submit" class="btn adddata w-100 mb-5">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include './footer.html' %}
+
+{% endblock content %}
