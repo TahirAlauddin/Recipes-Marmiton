@@ -11,7 +11,7 @@
                     <div class="row mod-first py-5">
                         
                     {% for recipe in recipes %}
-                    <div class="col-12 col-lg-4 my-3 my-lg-0 item">
+                    <div style="margin-bottom: 0.5rem !important" class="col-12 col-lg-4 my-3 my-lg-0 item">
                         <a href="{% url 'recipe-detail' recipe.slug %}" style="text-decoration: none;">
                                 <img src="{{recipe.thumbnail_image}}">
                                 <div class="detail">

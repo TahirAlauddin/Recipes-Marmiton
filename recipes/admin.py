@@ -64,3 +64,6 @@ admin.site.register(Utensil, UtensilAdmin)
 admin.site.register(RecipeImage)
 admin.site.register(IngredientItem)
 admin.site.register(UtensilItem)
+
+
+admin.site.site_header = 'Recipito'

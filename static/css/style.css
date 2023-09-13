@@ -45,9 +45,9 @@
     outline: none;
     box-shadow: none; }
   .nav-bottom .accounts img {
-    height: 30px;
-    width: 30px;
-    border-radius: 15px;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
     object-fit: cover;
     border: 2px solid #FF6F61; }
 
