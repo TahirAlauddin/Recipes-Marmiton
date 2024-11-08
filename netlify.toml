@@ -1,2 +1,2 @@
-[build] 
-command = "python manage.py runserver"
+ [build] 
+command = python manage.py runserver
