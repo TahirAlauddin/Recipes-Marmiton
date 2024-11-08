@@ -1,2 +1,10 @@
- [build] 
-command = python manage.py runserver
+# netlify.toml
+
+[build]
+  command = "pip install -r requirements.txt && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
+# Redirect all requests to the Django development server
+[[redirects]]
+  from = "/*"
+  to = "http://localhost:8000/:splat"
+  status = 200
