@@ -13,7 +13,7 @@
                     {% for recipe in recipes %}
                     <div style="margin-bottom: 0.5rem !important" class="col-12 col-lg-4 my-3 my-lg-0 item">
                         <a href="{% url 'recipe-detail' recipe.slug %}" style="text-decoration: none;">
-                                <img src="{{recipe.thumbnail_image}}">
+                                <img src="/media/{{recipe.thumbnail_image}}">
                                 <div class="detail">
                                     <p>{{recipe.title|slice:25}}</p>
                                     <span class="profile">

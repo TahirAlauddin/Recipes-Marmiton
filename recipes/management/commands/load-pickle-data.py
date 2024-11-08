@@ -45,7 +45,9 @@ class Command(BaseCommand):
                             "rest_time": clean_data(getattr(recipe, 'rest_time', 'N/A')),
                             "num_of_dishes": clean_data(getattr(recipe, 'num_of_dishes', 'N/A')),
                             "ingredients": [clean_data(str(ing)) for ing in getattr(recipe, 'ingredients', [])],
-                            "utensils": [clean_data(str(ut)) for ut in getattr(recipe, 'utensils', [])]
+                            "utensils": [clean_data(str(ut)) for ut in getattr(recipe, 'utensils', [])],
+                            "image": clean_data(getattr(recipe, 'image', ''))  # Add image field here
+
                         }
                         data_summary["recipes"].append(recipe_info)
                 except UnpicklingError:

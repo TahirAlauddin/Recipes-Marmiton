@@ -51,10 +51,10 @@
                     {% endif %} {% endcomment %}
 
                     <div class="item">
-                        <img src="{{ recipe.thumbnail_image }}">
+                        <img src="/media/{{recipe.thumbnail_image}}">
                     </div>
                     {% for image in images %}
-                        <div class="item"><img src="{{ image.image.url }}" alt=""></div>
+                        <div class="item"><img src="/media/{{ image.image }}" alt=""></div>
                     {% endfor %}
                 </div>
 
@@ -94,7 +94,7 @@
                     <div class="row">
                         {% for ingredientItem in ingredientItems %}
                         <div class="col-12 col-lg-3">
-                            <img src="{{ingredientItem.ingredient.image.url}}" class="img">
+                            <img src="{{ingredientItem.ingredient.image}}" class="img">
                             <br>
                             <span id="ingredient-{{forloop.counter0}}" name="ingredientItem-quantity">{{ingredientItem.quantity}}</span>
                             <span name="ingredientItem-unit">{{ingredientItem.unit}}</span>
@@ -112,7 +112,7 @@
                     <div class="row">
                         {% for utensilItem in utensilItems %}
                         <div class="col-12 col-lg-3">
-                            <img src="{{utensilItem.utensil.image.url}}" class="img">
+                            <img src="{{utensilItem.utensil.image}}" class="img">
                             <br>
                             <span name="utensilItem-quantity">{{utensilItem.quantity}}</span>
                             <span name="utensilItem-name">{{utensilItem.utensil.name}}</span>

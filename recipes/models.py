@@ -25,8 +25,7 @@ class Ingredient(models.Model):
                             unique=True,
                             help_text="Maximum 120 characters",
                             )
-    image = models.ImageField(upload_to='ingredients',
-                                default='default_ingredient.jpg')
+    image = models.URLField(blank=True, null=True, default=os.path.join('resources', 'defaults/default_ingredient.jpg'))
     approved = models.BooleanField(null=False, default=False)
 
 
@@ -83,33 +82,8 @@ class Utensil(models.Model):
                             unique=True,
                             help_text="Maximum 120 characters",
                             )
-    image = models.ImageField(upload_to='utensils',
-                                default='default_utensil.jpg')
+    image = models.URLField(blank=True, null=True, default=os.path.join('resources', 'defaults/default_utensil.jpg'))
 
-    def save(self, *args, **kwargs):
-        """ Overriding save method of models.Model to save
-        the images from #marmiton for each utensil using
-        the url scrapped in scrape-recipes command """
-        try:
-            img_url = kwargs.pop('img_url', None)
-        except KeyError:
-            return
-        
-        image_filename = self.name.translate(str.maketrans('', '', PUNCTUATION)) + '.jpg'
-            
-        try:
-            # image_url is a URL to the image which #marmiton is using
-            result = urllib.request.urlretrieve(img_url) 
-        except:
-            return
-
-        # self.photo is the ImageField
-        self.image.save(
-            os.path.join(image_filename),
-            File(open(result[0], 'rb'))
-            )
-
-        super(Utensil, self).save(*args, **kwargs)
     
     def __str__(self):
         """ String Representation of the object of Utensil """
@@ -187,7 +161,7 @@ class RecipeImage(models.Model):
     - recipe: The Recipe the image belongs to
 
     """
-    image = models.ImageField(upload_to='recipe_images')
+    image = models.URLField(null=True, blank=True)
     recipe = models.ForeignKey("Recipe", related_name='recipe_images',
                                 on_delete=models.CASCADE, null=True)
 
@@ -301,19 +275,9 @@ class Recipe(models.Model):
 
         
             if recipe:
-                title = recipe.title
-                image_filename = title.translate(str.maketrans('', '', PUNCTUATION)) + '.jpg'
-                with open(f"media/recipe_images/{image_filename}", 'wb') as picture:
-                    picture.write(recipe.recipe_image.image)
-
-                #? Read the content of the file (Recipe Image) and create an
-                #? instance of RecipImage
-                recipeImageFile = File( open(f"media/recipe_images/{image_filename}", 'rb'))
-                recipeImage = RecipeImage(image= recipeImageFile )
-                recipeImage.recipe = self
+                recipeImage = RecipeImage(recipe=self)
+                recipeImage.image = recipe.recipe_image.image
                 recipeImage.save()
-
-                print(f"{recipeImage} saved")
                 
             return True
 
@@ -345,9 +309,9 @@ class Recipe(models.Model):
             related to it.  """
         image = self.recipe_images.first()
         if image:
-            return os.path.join(settings.STATIC_URL, image.image.url)
+            return image.image
         if self.category:
-            return os.path.join(settings.MEDIA_URL, self.category.image.url)
+            return os.path.join(settings.MEDIA_URL, self.category.image)
         return os.path.join(settings.STATIC_URL, 'img/default.jpg')
 
     @property

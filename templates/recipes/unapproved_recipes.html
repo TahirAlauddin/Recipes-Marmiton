@@ -11,7 +11,7 @@
                 {% for recipe in recipes %}
                 <div class="col-12 col-lg-4 my-3 my-lg-0 item">
                     <a href="{% url 'approve-recipes-detail' recipe.slug %}" style="text-decoration: none;">
-                            <img src="{{recipe.thumbnail_image}}">
+                            <img src="/media/{{recipe.thumbnail_image}}">
                             <div class="detail">
                                 <p>{{recipe.title|slice:"20"}}</p>
                                 <span class="profile">
