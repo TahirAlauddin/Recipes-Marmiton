@@ -4,11 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 django-allauth = "*"
 python-dotenv = "*"
 pillow = "*"
 beautifulsoup4 = "*"
+lxml = "*"
+django = "==3.2"
 
 [dev-packages]
 
